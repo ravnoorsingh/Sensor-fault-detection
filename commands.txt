@@ -1,3 +1,12 @@
 python3 setup.py install
 pip list
 pip insrall -r requirements.txt 
+git init
+git status
+git add .   
+git commit -m "first commit"
+git branch -M main 
+git remote add origin https://github.com/ravnoorsingh/Sensor-fault-detection.git
+git push -u origin main
+git commit -m "modified gitignore file"
+git push -u origin main
