@@ -34,27 +34,25 @@ def train_route():
 
 @app.route('/predict', methods=['POST', 'GET'])
 def upload():
-   
     try:
-
-
-
-
         if request.method == 'POST':
+            # Check if model artifacts exist
+            model_path = os.path.join("artifacts", "model.pkl")
+            preprocessor_path = os.path.join("artifacts", "preprocessor.pkl")
+            
+            if not os.path.exists(model_path) or not os.path.exists(preprocessor_path):
+                return "Model not trained yet. Please visit /train first to train the model."
+            
             # it is a object of prediction pipeline
             prediction_pipeline = PredictionPipeline(request)
            
             #now we are running this run pipeline method
             prediction_file_detail = prediction_pipeline.run_pipeline()
 
-
             lg.info("prediction completed. Downloading prediction file.")
             return send_file(prediction_file_detail.prediction_file_path,
                             download_name= prediction_file_detail.prediction_file_name,
                             as_attachment= True)
-
-
-
 
         else:
             return render_template('upload_file.html')
@@ -66,4 +64,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug= True)
+    app.run(host="0.0.0.0", port=5001, debug= True)

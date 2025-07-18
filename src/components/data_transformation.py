@@ -15,10 +15,10 @@ from dataclasses import dataclass
 
 @dataclass
 class DataTransformationConfig:
-    artifact_dir = os.path.join("artifact_folder", "data_transformation")
+    artifact_dir = os.path.join(artifact_folder, "data_transformation")  # Changed from "artifact_folder"
     transformed_train_file_path = os.path.join(artifact_dir, "train.npy")
     transformed_test_file_path = os.path.join(artifact_dir, "test.npy")
-    transformed_object_file_path = os.path.join(artifact_dir, "preprocessor.pkl")
+    transformed_object_file_path = os.path.join(artifact_folder, "preprocessor.pkl")  # Save to main artifacts folder
 
 class DataTransformation:
     def __init__(self, feature_store_file_path):
@@ -89,4 +89,3 @@ class DataTransformation:
 
 
 # https://chatgpt.com/share/6879fab5-d338-800d-a7f5-f2e93c18e3b2
-    
