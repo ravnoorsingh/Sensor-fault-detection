@@ -5,6 +5,7 @@ import pandas as pd
 import pickle
 import yaml
 import boto3
+from typing import Any
 
 from src.constant import *
 from src.exception import CustomException
@@ -41,10 +42,11 @@ class MainUtils:
             logging.info("Exited the save_object method of MainUtils class")
 
         except Exception as e:
+            
             raise CustomException(e) from e  # Removed sys argument
 
     @staticmethod
-    def load_object(file_path: str) -> object:
+    def load_object(file_path: str) -> Any:
         logging.info("Entered the load_object method of MainUtils class")
 
         try:
@@ -55,4 +57,4 @@ class MainUtils:
             return obj
 
         except Exception as e:
-            raise CustomException(e) from e  # Removed sys argument
+            raise CustomException(e) from e
